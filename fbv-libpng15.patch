@@ -1,0 +1,20 @@
+--- fbv-1.0b/png.c~	2003-08-24 22:22:22.000000000 +0200
++++ fbv-1.0b/png.c	2012-02-10 20:54:37.179411826 +0100
+@@ -69,7 +69,7 @@
+         fclose(fh); return(FH_ERROR_FORMAT);
+     }
+     rp=0;
+-    if (setjmp(png_ptr->jmpbuf))
++    if (setjmp(png_jmpbuf(png_ptr)))
+     {
+ 	png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+         if(rp) free(rp);
+@@ -161,7 +161,7 @@
+         fclose(fh); return(FH_ERROR_FORMAT);
+     }
+     rp=0;
+-    if (setjmp(png_ptr->jmpbuf))
++    if (setjmp(png_jmpbuf(png_ptr)))
+     {
+ 	png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
+         if(rp) free(rp);
